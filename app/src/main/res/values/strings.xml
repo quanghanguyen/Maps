@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">SelectMap</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="api">AIzaSyA399sl7RPCJIx0XE9RelAmUsxMp_CIzJc</string>
+    <string name="title_activity_test_map">TestMapActivity</string>
 </resources>
