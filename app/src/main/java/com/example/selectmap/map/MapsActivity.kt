@@ -45,7 +45,6 @@ internal class MapsActivity :
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-//    private var distance : Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +69,6 @@ internal class MapsActivity :
         val originLocation = LatLng(currentLat, currentLong)
         val destinationLocation = LatLng(16.48194127564437, 107.60030369996487)
         val distance = SphericalUtil.computeDistanceBetween(originLocation, destinationLocation)
-//        val duration = SphericalUtil.com
 
         mapFragment.getMapAsync {
             map = it
@@ -80,10 +78,6 @@ internal class MapsActivity :
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
         }
 
-//        binding.direction.visibility = View.VISIBLE
-//        val animationSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up_view)
-//        binding.direction.startAnimation(animationSlideUp)
-
         val transition = Slide(Gravity.BOTTOM)
         transition.addTarget(binding.direction)
         TransitionManager.beginDelayedTransition(binding.root, transition)
@@ -91,7 +85,10 @@ internal class MapsActivity :
         val currentAddress = intent.getStringExtra("currentAddress")
         binding.myLocationAddress.text = currentAddress
         val meter = String.format("%.2f", distance / 1000)
+        val time = ((distance/1000)/30) * 60
+        val duration = time.toInt()
         binding.distance.text = "$meter Km"
+        binding.duration.text = "$duration Phút"
         binding.direction.visibility = View.VISIBLE
     }
 
