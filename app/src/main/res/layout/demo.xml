@@ -7,66 +7,291 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:layout_alignParentBottom="true"
-        >
-
-        <TextView
-            android:id="@+id/location_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            />
+        android:background="@color/white"
+        android:padding="16dp">
 
         <RelativeLayout
-            android:id="@+id/location_address_container"
-            android:layout_below="@+id/location_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            >
-
-            <ImageView
-                android:id="@+id/location_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_location_on_24"
-                android:layout_centerVertical="true"
-                />
+            android:id="@+id/your_location_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/your_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="52 Nguyễn Huệ, Thành Phố Huế"
-                android:layout_toEndOf="@+id/location_icon"
-                android:layout_marginStart="8dp"
-                android:layout_centerVertical="true"/>
+                android:text="Vị trí của bạn"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/your_location"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/location_icon_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_location_on_24" />
+
+                <TextView
+                    android:id="@+id/my_location_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/location_icon_1"
+                    android:text="43 Phan Chu Trinh, Thành Phố Huế"
+                    android:textColor="#4B4B4B" />
+
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_toEndOf="@+id/my_location_address"-->
+<!--                    android:src="@drawable/ic_baseline_edit_24" />-->
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/location_status"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/pitch_location_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đang mở cửa"
-            android:layout_below="@+id/location_address_container"
-            android:layout_centerHorizontal="true"/>
+            android:layout_below="@+id/your_location_layout"
+            android:layout_marginTop="8dp">
 
-        <Button
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/pitch_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sân Monaco Huế"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pitch_location"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/location_icon_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_location_on_24" />
+
+                <TextView
+                    android:id="@+id/pitch_location_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/location_icon_2"
+                    android:text="FJJ2+M47, Vỹ Dạ, Thành Phố Huế"
+                    android:textColor="#4B4B4B" />
+
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_toEndOf="@+id/pitch_location_address"-->
+<!--                    android:src="@drawable/ic_baseline_navigation_24" />-->
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_below="@+id/location_status"
-            android:text="Chỉ đường"
-            android:textAllCaps="false"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/green"
-            android:layout_marginBottom="16dp"
-            />
+            android:paddingVertical="16dp"
+            android:background="@drawable/rectangle_bg"
+            android:layout_below="@+id/pitch_location_layout"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#007405"
+                        android:textSize="10sp"
+                        android:text="Khoảng cách"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="2.4 Km"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#007405"
+                        android:textSize="10sp"
+                        android:text="Thời gian"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="10 phút"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#007405"
+                        android:textSize="10sp"
+                        android:text="Trạng thái"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Đang mở cửa"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
+
+
+
+
+
+
+
+
+    <!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/white"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        >-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/location_name"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/app_name"-->
+<!--            android:textSize="20sp"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            />-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/location_address_container"-->
+<!--            android:layout_below="@+id/location_name"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/location_icon"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/ic_baseline_location_on_24"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="52 Nguyễn Huệ, Thành Phố Huế"-->
+<!--                android:layout_toEndOf="@+id/location_icon"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_centerVertical="true"/>-->
+
+<!--        </RelativeLayout>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/location_status"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Đang mở cửa"-->
+<!--            android:layout_below="@+id/location_address_container"-->
+<!--            android:layout_centerHorizontal="true"/>-->
+
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_below="@+id/location_status"-->
+<!--            android:text="Chỉ đường"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:backgroundTint="@color/green"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            />-->
+<!--    </RelativeLayout>-->
+
+
 </RelativeLayout>

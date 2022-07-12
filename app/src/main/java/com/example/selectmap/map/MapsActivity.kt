@@ -13,6 +13,7 @@ import android.transition.TransitionManager
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -31,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.libraries.places.api.Places
 import com.google.gson.Gson
+import com.google.maps.android.SphericalUtil
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -43,7 +45,7 @@ internal class MapsActivity :
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-
+//    private var distance : Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,43 +65,57 @@ internal class MapsActivity :
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        val currentLat = intent.getDoubleExtra("currentLat", 0.1)
+        val currentLong = intent.getDoubleExtra("currentLong", 0.1)
+        val originLocation = LatLng(currentLat, currentLong)
+        val destinationLocation = LatLng(16.48194127564437, 107.60030369996487)
+        val distance = SphericalUtil.computeDistanceBetween(originLocation, destinationLocation)
+//        val duration = SphericalUtil.com
+
         mapFragment.getMapAsync {
-
-            val currentLat = intent.getDoubleExtra("currentLat", 0.1)
-            val currentLong = intent.getDoubleExtra("currentLong", 0.1)
-
             map = it
-            val originLocation = LatLng(currentLat, currentLong)
-            val destinationLocation = LatLng(16.48194127564437, 107.60030369996487)
             map.addMarker(MarkerOptions().position(destinationLocation))
             val urll = getDirectionURL(originLocation, destinationLocation, apiKey)
             GetDirection(urll).execute()
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
         }
+
+//        binding.direction.visibility = View.VISIBLE
+//        val animationSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up_view)
+//        binding.direction.startAnimation(animationSlideUp)
+
+        val transition = Slide(Gravity.BOTTOM)
+        transition.addTarget(binding.direction)
+        TransitionManager.beginDelayedTransition(binding.root, transition)
+
+        val currentAddress = intent.getStringExtra("currentAddress")
+        binding.myLocationAddress.text = currentAddress
+        val meter = String.format("%.2f", distance / 1000)
+        binding.distance.text = "$meter Km"
+        binding.direction.visibility = View.VISIBLE
     }
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-
         val hue = LatLng(16.461109, 107.570183)
         val khoa_hoc = LatLng(16.458719908325826, 107.59226512659689)
         val monaco = LatLng(16.48194127564437, 107.60030369996487)
 
-//        map.addMarker(
-//            (MarkerOptions()
-//                .position(khoa_hoc)
-//                .title("Sân Khoa Học Huế")
-//                .snippet("77 Nguyễn Huệ, Phú Nhuận, Thành phố Huế")
-//                    )
-//        )
-//
-//        map.addMarker(
-//            MarkerOptions()
-//                .position(monaco)
-//                .title("Sân Monaco Huế")
-//                .snippet("FJJ2+M47, Vỹ Dạ, Thành phố Huế")
-//        )
+        map.addMarker(
+            (MarkerOptions()
+                .position(khoa_hoc)
+                .title("Sân Khoa Học Huế")
+                .snippet("77 Nguyễn Huệ, Phú Nhuận, Thành phố Huế")
+                    )
+        )
+
+        map.addMarker(
+            MarkerOptions()
+                .position(monaco)
+                .title("Sân Monaco Huế")
+                .snippet("FJJ2+M47, Vỹ Dạ, Thành phố Huế")
+        )
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(hue, 15f))
 
@@ -140,15 +156,15 @@ internal class MapsActivity :
         return false
     }
 
-    private fun displayCustomWindow(marker: Marker) {
-        val transition = Slide(Gravity.BOTTOM)
-        transition.addTarget(binding.customWindow)
-        TransitionManager.beginDelayedTransition(binding.root, transition)
-
-        binding.customWindow.visibility = View.VISIBLE
-        binding.locationName.text = marker.title
-        binding.locationAddress.text = marker.snippet
-    }
+//    private fun displayCustomWindow(marker: Marker) {
+//        val transition = Slide(Gravity.BOTTOM)
+//        transition.addTarget(binding.customWindow)
+//        TransitionManager.beginDelayedTransition(binding.root, transition)
+//
+//        binding.customWindow.visibility = View.VISIBLE
+//        binding.locationName.text = marker.title
+//        binding.locationAddress.text = marker.snippet
+//    }
 
     override fun onMyLocationClick(location: Location) {
         Toast.makeText(this, "Đây là vị trí của bạn", Toast.LENGTH_LONG).show()
