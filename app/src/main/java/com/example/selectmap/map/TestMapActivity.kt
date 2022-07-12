@@ -41,7 +41,6 @@ class TestMapActivity : AppCompatActivity(), OnMapReadyCallback {
             .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
         val value = ai.metaData["com.google.android.geo.API_KEY"]
         val apiKey = value.toString()
-        // Initializing the Places API with the help of our API_KEY
         if (!Places.isInitialized()) {
             Places.initialize(applicationContext, apiKey)
         }
@@ -71,7 +70,7 @@ class TestMapActivity : AppCompatActivity(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(hue, 15f))
     }
 
-    private fun getDirectionURL(origin:LatLng, dest:LatLng, secret: String) : String{
+    private fun getDirectionURL(origin:LatLng, dest:LatLng, secret: String) : String {
         return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}" +
                 "&destination=${dest.latitude},${dest.longitude}" +
                 "&sensor=false" +

@@ -3,4 +3,5 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="api">AIzaSyA399sl7RPCJIx0XE9RelAmUsxMp_CIzJc</string>
     <string name="title_activity_test_map">TestMapActivity</string>
+    <string name="title_activity_test_map2">TestMap2Activity</string>
 </resources>
